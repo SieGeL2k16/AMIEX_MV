@@ -1,0 +1,499 @@
+
+        mEGA-VieW written by SieGeL (c) 1993-95 (tRSi/X-iNNOVATiON)
+
+                             Programhistory
+                             ~~~~~~~~~~~~~~
+V0.01  (12-??-93) - MST-VieW is born ...
+
+V1.0ß  (01-??-94) - First public release (forgotten to delete the Betasign from
+                    the Version-String, so V1.0ß is the REAL public Version!)
+
+                   +Handles LHA/DMS/SHR/ZIP/ARJ/EXE-Archives (TESTING/VIEWING)
+
+                   +Supports FileID.DIZ by .DMS & .EXE
+
+                   +Supports Wildcards at every position (No need to enter
+                    three real chars b4 using the star)
+
+                   +Supports 'realtime' Archive-Testing via PIPE: (THX BYTI!)
+
+                   +Integrated SysopView (set via Tooltypes)
+
+                   +Checks for Restricted Files in ACP
+
+                   +Supports extracting files for viewing from LHA/ZIP/SHRINK
+
+                   +Checks for accesslevel to view or test only files (set
+                    via ToolType)
+
+                   +Supports NonStop-Viewing for BBS-Adverts & ANSI-anims
+
+
+V1.1ß  (03-07-94) - First BETA-Release for our ß-Testers.
+
+                   *SUGGESTION FROM ? : (Sorry..forgotten the Name..:)
+                    Added new ToolType for the default Extractpath used by
+                    LHA & UnZIP so you don't have to buy 50MB RAM to use the
+                    extract-options...:))
+
+                   *BUGREPORT FROM BYTEANDI/MST:
+                    MST-VieW V1.0ß couldn't check for inserted Disks...just
+                    enter V df0: and if DF0: has no disk in drive an
+                    AmigaDos-Errorrequester pops up and the node stands until
+                    the SYSOP has answered the requester
+                    This has been FIXED with a Checkroutine written by SPY/MsT
+                    (BIG THX!!!)
+
+                   +Now Files checked via FileID.Library by BloodRock/SDC
+                    instead of only checking the filename-extension, faster
+                    and much much safer..(rename a textfile into .lha and try
+                    to view it with V1.0ß...:) )
+
+                   +Added AmigaGuide-Viewer (Guide2Doc V1.1 - rewritten by
+                    myself to work correctly)
+
+                   +Internal SAS-Functions replaced by smaller (and faster)
+                    Dos.Library-Calls
+
+                   +SHRINK-Packeroption removed coz FileID.library doesn't
+                    recognize SHRINK in V5, BloodRock will add it in the next
+                    update of the Library and then you will get back this
+                    Option (if needed!!!)
+
+                   +In V1.0ß, you have to restart the door if you want to view
+                    another file...now fixed..if an error occures and it's not
+                    a very hard error, you were kicked back to the Prompt to
+                    enter the next file.
+
+
+V1.2ß  (03-23-94) - BETA-Release for our Betatesters
+
+                   *BUGREPORT FROM BYTEANDI/MST & DR.DRE/TRSI:
+                    MST-VieW DON'T handle Restricted Files correctly..it's
+                    possible to view 'USER.DATA' (!) without any problems..
+                    Now FIXED! MST-VieW now first checks the Restricted Files
+                    which are set in ACP, then it checks the FileComments for
+                    the keyword "RESTRICTED"...if found, MST-VieW stops and
+                    tell the user that he has tried to view a Restricted File.
+                    If ACP couldn't found, the viewing of files is disabled and
+                    the user could only test archives...!
+
+                   *SUGGESTION FROM SCORPIO/SR:
+                    It could happen that MST-VieW don't find ACP.INFO, in this
+                    case it aborts and won't work. To avoid such problems, I
+                    added a ToolType (ACP_PATH) were you could enter the path
+                    to ACP if MST-VieW don't find it without the ToolType.
+
+                   *BUGREPORT FROM ARGON/MST & SCORPIO/SR:
+                    Guide2Doc V1.1 crashes on their machines (80000003). Coz
+                    of very badly Original-Code, we decided to write our own
+                    Converter called GuideToDoc V1.0 written by ByteAndi/MST.
+                    See MST-VieW.guide for more information about thiz cewl
+                    tool.
+
+                   +Changed the checkroutine for PIPE:, coz if not mounted,a
+                    requester appears and asks to put device PIPE: in any
+                    drive. Now FIXED!
+
+                   +If MST-View runs on a Multinodeboard and two or more
+                    user view files, it could happen that all users view the
+                    same file coz MST-View don't change the filename for every
+                    Node...now FIXED ! Every Filename you are viewing from an
+                    archive gets now an extension with your nodenumber, so no
+                    probs should occure...
+
+                   +Found a Memory-Eater which will costs you every time some
+                    Bytes of PublicMem...FIXED !
+
+                   +Many Codeimprovements made MST-VieW V1.2ß a little bit
+                    faster and much safer, coz I've added Errormessages in ALL
+                    Routines and in the case of an error ALL memory and other
+                    allocated Staff will be deallocated now.
+
+                   +During an update of UnZIP I rewrite some routines. No need
+                    to change the directory and 'unzips' into this drawer any-
+                    more, coz UnZIP V5.1 now allows to enter a extractpath
+                    like LHA do. I highly recommend that you only useUnZIP V5.1
+                    (found in this archive) or higher. If you use an earlier
+                    version MST-VieW couldn't start UnZip correctly. (In the
+                    latest Version some parameters have been changed.!).
+
+                   +Changed the waitingprompt. Now the FileName you are viewing
+                    will be shown. The optionprompt is now similar to the /X
+                    Messageprompt. Enter '?' to get a short help during viewing.
+
+                   +To select a file from an LHA/ZIP-archive you could now use
+                    the CRSR-Keys. For Users, which has the ANSI-Flag off in /X,
+                    the File currently selected will be marked with an arrow
+                    (-> or <-) ..but which user view in non-Ansi ? ...:)
+                    IMPORTANT:Make sure that your Numlines are correct...wrong
+                    amounts result in wrong displays. I have tested it out with
+                    displaymodi from 20 upto 60 Lines in VGA ...it works...
+
+
+V1.3ß  (04-12-94) - BETA-Release for our Betatesters
+
+                   *Coz of changing the Group the viewer has to be renamed to
+                    TRSi-VieW. All following Tools will be released under the
+                    TRSI - Label.
+
+                   *SUGGESTION FROM ARGON/MST:
+                    Now TRSi-VieW shows all unknown or not supported Files in
+                    Hexadecimal-Output like the DirectoryOpus-Function HEXREAD.
+                    Nonprintable Characters (aSCii-Value <32 or >127 ) where
+                    shown as dots.
+
+                   *SUGGESTION FROM BYTEANDI/TRSI:
+                    Now you could Download *ONE* file from an LHA/ZIP archive.
+                    The needed AccessLevel for this option is defined in a
+                    ToolType called 'DL_LEVEL'. All users with an accesslevel
+                    equal to the one you defined in this Tooltype could select
+                    one file from LHA/ZIP archives and download it directly
+                    from the archive. Of course the user could only DL if he
+                    has uploaded the same bytesize like the selected File. If
+                    he hasn't uploaded enough or he has exceeded his Dailybytes,
+                    TRSi-VieW stops and prints out an errormessage. After down-
+                    loading TRSi-VieW writes the new DL-Stats to /X.
+                    The Downloadoption works with ZIP & LHA-archives.
+
+                   +Changed the LHA-Testroutine a little bit...LHA V1.50r has
+                    an Option called -D<x>, where x stands for an number ranging
+                    from 0-3. With this option you could change the Output from
+                    LHA (Alternate Display). I've included a randomroutine to
+                    let LHA use random outputs when testing archives.
+
+                   +Small bug in the CRSR-Routine...if an archive contains
+                    only one file, TRSi-VieW writes twice the filename if you
+                    press CRSR-Down...now fixed. If TRSi-VieW founds only one
+                    Filename inside the archive, you were asked to view this
+                    file (no need for CRSR-Keys if only one file present!)
+
+                   +Fixed some small and hidden Bugs...hope to get no more
+                    bugs...but nobody is perfect...
+
+V1.4ß  (04-16-94) - BETA-Release for our Betatesters
+
+                   +Fixed the checking for user.data. If user.data is not marked
+                    as restricted you could view it anymore !!! Now FIXED !
+
+                   +Fixed a little bug in the LHA/ZIP-Routine. I have forgotten
+                    to sort out filenames beginning with '-' .
+
+V1.5ß  (05-15-94) - Next BETA-Version...but this time only for Delta-X/Neon in
+                    Fact that my only BetaSite get busted a few days before...
+                    So It's impossible to give the newest Beta-Versions to our
+                    testers...Fuck da Police is the only thing I could say bout
+                    Busts...pffft!
+
+                   +Fixed a bug in the CRSR-Keysroutine, which will hang up once
+                    U have leave them with the ESC-Key and entering it again.
+                    Now Fixed...
+
+V1.6ß  (05-31-94) - BETA-Version (Tester: Delta-X , BBS: House of Brain)
+
+                   +Rewritten the CRSR-Keyroutine, now the Contents of the
+                    desired archive will be sorted alphabetically before
+                    displaying it.
+
+                   +Changed the Programname from 'tRSi-VieW' to 'MeGa-VieW'...
+                    I think this describes the Viewer a bit better ...:)
+
+                   +Now MeGa-VieW disable the Amiga-Dos Errorrequesters, so it
+                    is impossible to hang up the node with Error-Requesters.
+
+                   *SUGGESTION FROM DELTA-X/NEON:
+                    If a user selects a Filename with a '$'-Sign inside the name,
+                    MeGa-VieW always shows the Version-String & Registration
+                    instead of showing the Contents of the selected File...now
+                    fixed ! Only if U enter '$' U will see the Version.
+
+                   +During an update of the FileID.Library I added the SHRINK-
+                    support again...now you could view/test SHRINK-Archives.
+                    New Tooltype : SHRINK_PATH=<path>.
+
+                   +Added the User-Break (CTRL-C) while testing an archive via
+                    the PIPE: ...don't wonder if MeGa-VieW shows the '**Break'
+                    but don't return immediatly to the FilePrompt...that's because
+                    I start all Packers in Background and if you break the
+                    testing the Packers must finish their outputs before MeGa-VieW
+                    give you back the fileprompt...
+
+V1.7ß  (06-11-94) - Beta-Version
+
+                   +Removed the showing of Restricted Files 'coz nobody needs
+                    it...
+
+                   +Fixed a little bug in the Downloading-Routine: Users with
+                    a Disable couldn't dl'ing a file from an archive if their
+                    BytesAvail is lower then the selected Filesize...now if a
+                    User has a Disabled Ratio all checkings were skipped and
+                    he could dl'ing the file in any case....
+
+V2.00  (06-14-94) - PUBLIC RELEASE !
+
+                   +Removed the Registration-Routine...
+
+                   +Changed the Version to V2.00 for Public Release.
+
+V2.01  (09-20-94) - Internal Update
+
+                   +Changed the OpenLibrary - Call for the FileID-Lib...now
+                    you don't need the same FileID-Library I use for compiling
+                    Mega-View, 'coz the minimum Version U need for FileIdenti-
+                    fication is V2 or higher...:) was a stupid bug from me..
+
+                   +During an error in ByteAndi's GuideToDoc I have decided to
+                    use another program for the converting from Guide to ANSI.
+                    Now I use a program called 'GuideToDocProf' written by
+                    FoX/RmD, which is (at this time!) the fastest and best
+                    converter Program I know...To let Mega-View use this very
+                    cewl program I've changed the Call from Mega-view. Now all
+                    converter-programs should accept the following Syntax:
+
+                          GUIDETODOCPROF <GUIDE> <ANSI-FILE>
+
+                    Coz this is the Format I use to run external converters.
+                    More about this in the Doc-File.
+
+V2.02  (10-13-94) - Internal Update
+
+                   +During the Fake-Release of V2.01ß I have to protect my
+                    Tools against such lamers. From now on all Tools where
+                    registered to my Beta-Testers, so i have an overview of
+                    my Beta-Tools. Sorry for that.
+
+                   +Changed the '$' - Command. Now Mega-View shows the FileID-
+                    Library Version you've installed on your System, not the
+                    Version I've compiled MeGa-VieW with...
+
+V2.03  (02-04-95) - bETA uPDATE fOR rEGISTERED uSERS !
+
+                   *BUGREPORT FROM SPY/TRSI & BYTEANDI/TRSI
+                    Many Enforcer-Hits reported ! All this fuckin' hits were
+                    fixed...
+
+                   +ToolTypes were now checked if they are present or not! In
+                    previous versions missing tooltypes let the enforcer
+                    working..:( Now fixed, too!
+
+                   +Made many Code-Improvements...how lame could I code ..:(
+
+                   +Changed the Directory-Scan Routine...faster than light !
+
+                   +Rewritten all Packerroutines...now more faster !
+
+V2.04  (02-16-95) - Internal Update
+
+                   +Changed the Text-Show-Routine...now colored ANSI's would
+                    be displayed correctly, without destroying the hole pic !
+
+                   +Added another Protection.It checks out if the external
+                    programs, which you defined in the Tooltypes, exists, coz
+                    I've found out that if they don't exist and you try to
+                    test something, mEGA-vIEW will crash and the node hangs!
+
+                   +Forgot to free Memory in ALL previous versions...lame..
+                    Now fixed, the system gets back his memory...sorry...
+
+                   +Changed the LHA-Routines a little bit..
+
+       (02-24-95)  +Added Tooltype-View-Support for PROJECT-,TOOL- & DRAWER-
+                    icons, the other icon-types have no Tooltypes and will be
+                    displayed in Hex-Dump...hope this function helps to
+                    become more informations about some programs...
+
+       (02-25-95)  +Added support for the ZOO-Packer...now testing and viewing
+                    of zoo-archives is possible...
+
+       (02-26-95)  +Added support for ZOOM & WARP archives, both archivers
+                    checkers are Disk-Packers and therefor only the Checking
+                    iss possible...in fact of this I support only the WARPCK
+                    and the ZOOMCHK-Programs...
+
+                   +Changed the displaying of ARJ-archives...now it's possible
+                    to use either the UnArj V2.1 or the old V1.15...
+
+       (02-27-95)  +Added the support for the new LZX-Packer, but currently
+                    only testing & viewing of the archive is possible, coz LZX
+                    isn't able to handle recursive archiving/extracting...if
+                    this nasty bug will be fixed in the future, i will emplant
+                    the same extract-routines like LHA/ZIP...
+
+                   +Enhanced the Cursor-Keys, now users, who don't use VT-
+                    emulation in their terminals, could handle the CRSR-Keys
+                    with the 8 (for up) & 2 (for down) Keys..
+
+V2.05  (03-01-95) - BETA & PUBLIC RELEASE
+
+                   +Changed the HEX-Dump function to maximum speed available
+                    on your System...:)
+
+V2.06  (04-07-95) - Internal Beta-Update for pUNISHMENT iNC.
+
+                   +Replaced the malloc()/free() functions with Exec-Memory
+                    routines to increase speed, also replaced many ANSI-C
+                    routines with ASM-Routines, of coz to gain Speed :)
+
+                   +Fixed an Enforcer-Hit when viewing an icon containing
+                    no Tooltypes...
+
+                   +Rewritten the Identification of LZX-Archives, coz FileID-
+                    library V6.11 now identifies LZX-archives, and therefor
+                    no Extension-Checking is needed anymore...
+
+                   *SUGGESTION FROM BUD WEISSER:
+                    Added new Tooltype 'ALLOW_ARCHIVES=<YES|NO>', if set to
+                    NO, mEGA-vIEW won't allow it to view any archive-type,
+                    only TXT & Guide-Files are allowed to view then!
+
+V2.07  (04-20-95) - Internal Update
+
+                   +Changed the Waiting-Prompt, now the Keycombination 'NS'
+                    stands for NONSTOP-SCROLLING, not anymore the 'S'-Command.
+                    if you want to stop viewing, simply enter 'N' + Enter and
+                    mEGA-vIEW asks you 4 the next file.
+
+V2.08  (05-07-95) - Internal Update
+
+                   +Now the last few ANSI-C routines are replaced with ADOS-
+                    commands, so the code-size decreases again a little bit.
+
+                   +Changed the internal Txt-Displayroutine...now all anims
+                    were displayed correct (aaah..:)...but this changing has
+                    one fault : YOU MUST HAVE INSTALLED AMIEX V3.18 OR HIGHER,
+                    OTHERWISE THIS WON'T WORK!!!! SO PLEASE MAKE SURE THAT YOU
+                    HAVE THE RIGHT VERSION-NUMBER, I DON'T KNOW WHAT HAPPEN IF
+                    YOU START MEGA-VIEW ON EARLIER VERSIONS OF AMIEX!!!
+                    But of course the FAME-BBS supports this method of
+                    displaying TXT-Files, so why not changing to it ? :)))
+
+       (05-13-95) - Found a very nasty bug in Amiex when displaying Animations
+                    with ANSI - Mode set to off...always appears a Guru Med.
+                    What a lameness, you have to truncate the readed buffer to
+                    1023 (what a number!) bytes, otherwise the buffer will be
+                    overflown and your machine resets! Now mEGA-vIEW checks out
+                    the ANSI-Flag and if set to off, only displays 1000 Bytes
+                    at one time to avoid such fuckin shit!
+
+       (05-18-95) - Fixed the CutAnsi() Routine to display textfiles correct.
+
+       (06-18-95) - After two weeks of coding, the new CRSR-Support routines
+                    are ready. Now it's possible to flag more than only one
+                    file when using ZIP or LHA archives. The contents of the
+                    archive were displayed like the output of the List-Comm.
+                    If the Archivecontents doesn't fit at one time on your
+                    screen, the contents were splitted in more screens. Now
+                    it's possible to jump between the pages with CRSR-Left or
+                    right. Up/Down chooses, SPACE select/deselect a file.
+                    To start the extracting, exit this menue with Q, and
+                    mEGA-vIEW now starts to extract the files, of course
+                    downloading and all other features of prev. Versions are
+                    working! Of course the checking for enough memory are
+                    also done, but in difference to prev. versions i've
+                    removed the ability to check the archive if the File
+                    doesn't fit in your TEMP-Dir, 'coz this could also cause
+                    trouble !
+
+                   +When selecting an icon which contains no ToolTypes,
+                    mEGA-vIEW doesn't writes a message...now fixed.
+
+                   +Made many Code-Improvements, resulting in faster code.
+
+       (06-19-95) - Added a Version-Checker. If you choose Executables (Amiga)
+                    or Libraries etc., it will be checked for the Standard
+                    Versions-Strings, and if found, displayed to you :)
+                    MS-Dos Executables,JPG's,GIF's and IFF-Pics are not
+                    scanned for Versions-Tags of course :)
+
+V2.081 (06-22-95) - Internal Update
+
+                   +BUGREPORT FROM ARGON/PDY:
+                    mEGA-vIEW calculates the amount of pages for some archive-
+                    contents wrong...this happens during wrong initializing of
+                    the page-counter :) Now fixed, mEGa-vIEW should display
+                    now the page-amount correct.
+
+V2.09  (06-23-95) - Internal Update
+
+                   +Rewritten the displaying of the online-help. Now the
+                    screen clears, displays the informations, and re-load
+                    the hole screen ! So you see all of the text you've seen
+                    before choosing to view the online-help! This works also
+                    in the Hex-Output.
+
+       (06-26-95)  +Added a Zippy-Search Routine, which allows you to search
+                    inside textfiles for a substring. If mEGA-vIEW founds the
+                    searchstring, it displays the desired line on top of
+                    screen. To start Zippy search, select (Z) in the pause-
+                    prompt. After entering the searchstring you where asked if
+                    mEGA-vIEW should scan the file from Beginning or from
+                    Current Position. Current means scanning from the Top line
+                    displayed on screen.
+
+                   +Removed the ACP_PATH Tooltype/Functions, as it was useless
+                    because mEGA-vIEW checks itself for Restricted Files.
+
+V2.091 (06-27-95) - Update
+
+                   *SUGGESTION FROM DEATH ANGEL/SDC:
+                    Added a Pauseprompt when viewing icons containing many
+                    Tooltypes, so you should now see all of them :)
+
+                   *SUGGESTION FROM ARGON/PDY:
+                    Added a colorisation for the searchstring, meaning that
+                    mEGA-vIEW now displays the found string in green, allow-
+                    ing you to easily see on which line the matching appears.
+
+V2.1   (06-28-95) - BETA-RELEASE
+
+V2.11  (09-12-95) - Next Beta-Release
+
+                   +BUGREPORT FROM aIRWORX:
+                    It could happen that mEGA-vIEW crashes, maybe in fact of
+                    fragmented or less Memory...anyway, I have now built in
+                    additional error-checkings. Some variables could got more
+                    contents than I have plan to copy in, so i have to increase
+                    the memory used by mEGA-vIEW to 4KB . This is the value
+                    which will be allocated when starting mEGA-vIEW. I hope
+                    the memory crashings are now history...
+
+V2.12  (09-12-95) - Update, currently only for testing purposes
+
+                   +BUGREPORT FROM dEATH aNGEL/SDC:
+                    meGA-vIEW V2.11 crashes every time when it's started. Some
+                    things are rewritten, but not tested yet. Some bugs fixed
+                    and some improvements made.
+
+                   +Fixed a bug with some "special" lha-archives. In some
+                    cases, bbs-adverts could be found in the Filecomments,
+                    and this crashes mEGA-vIEW ! Now fixed, mEGa-VIEW sorts
+                    out 0 Byte-Files and ALL Filecomments. I was not able to
+                    reproduce this error after the fixing.
+
+                   +Fixed a memory-deallocation Bug, now you got back all your
+                    memory :)
+
+V2.13  (12-18-95) - Major Update
+
+                   -Fixed the Version Bug, now you get the Versionsnumber if
+                    you enter 'Version mEGA-vIEW' in a CLI-Window. Also some
+                    code-improvements made.
+
+                   +Added the LZX-Support! This will be exactly the same out-
+                    put like when choosing LHA or ZIP archives. Please notice
+                    that this option only works with LZX V1.21 !!! Lower 
+                    Versions doesn't work correctly, so please check first the
+                    LZX-Version you have installed!
+
+V2.14  (06-04-96) - Small Update
+
+                   -Hopefully fixed the Problem with the forgotten files in
+                    the temporary dirs by changing the building of the file-
+                    names to the AmigaOS compatible way.
+
+V2.15  (06-04-96) - GRRR...Bug-Fixing!
+                   *BUG-REPORT FROM ELGUN:
+                    When entering a filename to view mEGA-vIEW won't find it
+                    because of changing the internal SPrintf(), which doesn't
+                    like %d...now fixed!
+-----------------------------------------------------------------------------EOF

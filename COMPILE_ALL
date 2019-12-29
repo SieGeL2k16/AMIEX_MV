@@ -1,0 +1,1 @@
+sc mega-view.c showtext.c allother.c arj.c checks.c dms.c downloading.c exe.c lha.c lzx.c read_dir.c read_icon.c show_hex.c shrink.c sortarchives.c support.c zip.c zoo.c zoom.c
